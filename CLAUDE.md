@@ -2,7 +2,7 @@
 
 Guidance for Claude Code working in this repository.
 
-It is meant to be a **submodule of `mutint`**. Edit it **here**, in the suite-root checkout,
+It is a **submodule of `mutint`**. Edit it **here**, in the suite-root checkout,
 never in `mutint/mutint-fastqc`. That copy is on a detached HEAD, and a commit made there is
 reachable only by SHA inside that one clone. See the suite `CLAUDE.md`.
 
@@ -144,21 +144,12 @@ whenever it runs.
 
 ## Tests
 
-The plugin is not in `mutint/.gitmodules` yet. To run its tests from `mutint/`, use a settings
-module that adds the app, with the root checkouts on `PYTHONPATH`:
-
 ```bash
-cat > /tmp/fastqc_settings.py <<'PY'
-from config.settings_local import *  # noqa: F401,F403
-INSTALLED_APPS = INSTALLED_APPS + ["mutint_fastqc"]
-PY
-cd mutint
-DJANGO_SETTINGS_MODULE=fastqc_settings \
-PYTHONPATH=/tmp:../mutint-core:../mutint-breseq:../mutint-fastqc \
-./mutint test mutint_fastqc
+cd mutint && ./mutint test mutint_fastqc
 ```
 
-Once it is a submodule, run `cd mutint && ./mutint test mutint_fastqc`.
+That tests the submodule clone. To test uncommitted edits in this checkout, put it first on
+`PYTHONPATH`: `PYTHONPATH=/path/to/mutint-code/mutint-fastqc ./mutint test mutint_fastqc`.
 
 **27 tests.** The end-to-end ones go through mutint-breseq's launcher, using fake breseq, fake
 fastp and `fake_fastqc`, and are skipped where mutint-breseq is not installed. The cancellation
