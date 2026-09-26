@@ -1,0 +1,7 @@
+# Install mutint-core dependencies first:
+#   pip install -r mutint-core/requirements.txt
+#
+# mutint-fastqc-specific additions (if any):
+#
+# None. The plugin shells out to FastQC (see tools.txt) and reads its zip with the standard
+# library's zipfile; nothing here is new to the venv.

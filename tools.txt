@@ -1,0 +1,15 @@
+# External tools mutint-fastqc runs, as conda package specs -- one per line. The entry script
+# installs every component's list into env/tools in one micromamba solve; see mutint-core's
+# tools.txt for the contract. There is deliberately no per-platform handling, so a spec must
+# have a build for every platform MutInt runs on.
+#
+# fastqc is noarch (a Perl wrapper around a Java program), so it builds everywhere; its
+# dependencies are openjdk and perl, both on conda-forge for osx-arm64, osx-64 and linux-64.
+# Measured 2026-09-26: 0.12.1 hdfd78af_0.
+#
+# **openjdk puts no `java` in the prefix's bin/**: it is at lib/jvm/bin/java, and conda sets
+# JAVA_HOME from an activation script nothing here runs. FastQC's wrapper runs a bare `java`,
+# so the step runs it under `mutint_common.tools.tool_environment()`, which puts the JVM on
+# PATH -- without that it runs on the host's java, which a developer Mac has and a clean
+# machine does not. mutint-refsniff's bbmap pulls in the same openjdk.
+fastqc

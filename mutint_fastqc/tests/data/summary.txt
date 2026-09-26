@@ -1,0 +1,10 @@
+PASS	Basic Statistics	S1_R1.fastq.gz
+PASS	Per base sequence quality	S1_R1.fastq.gz
+PASS	Per sequence quality scores	S1_R1.fastq.gz
+PASS	Per base sequence content	S1_R1.fastq.gz
+PASS	Per sequence GC content	S1_R1.fastq.gz
+PASS	Per base N content	S1_R1.fastq.gz
+WARN	Sequence Length Distribution	S1_R1.fastq.gz
+PASS	Sequence Duplication Levels	S1_R1.fastq.gz
+PASS	Overrepresented sequences	S1_R1.fastq.gz
+PASS	Adapter Content	S1_R1.fastq.gz
